@@ -45,4 +45,12 @@ class User extends Authenticatable
     public function AauthAcessToken(){
         return $this->hasMany(OauthAccessToken::class);
     }
+
+    public function getCategories(){
+        return $this->hasMany(Category::class);
+    }
+
+    public function getDatas(){
+        return $this->hasMany(Data::class);
+    }
 }

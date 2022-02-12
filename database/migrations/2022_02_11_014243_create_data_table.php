@@ -19,7 +19,8 @@ return new class extends Migration
             $table->decimal('amount', 13, 2);
             $table->unsignedBigInteger('currency_id');
             $table->unsignedBigInteger('category_id');
-            $table->string('description')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->text('description')->nullable();
             $table->timestamps();
 
             $table->foreign('currency_id')
@@ -31,6 +32,12 @@ return new class extends Migration
             $table->foreign('category_id')
                   ->references('id')
                   ->on('categories')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
         });
