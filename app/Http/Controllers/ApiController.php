@@ -26,7 +26,7 @@ class ApiController extends Controller
       }
       else {
         return response()->json(
-          'error' => 'Unauthorized'
+          ['error' => 'Unauthorized']
         , 401);
       }
     }
@@ -52,7 +52,7 @@ class ApiController extends Controller
       }
       else {
         return response()->json(
-          'error' => 'Unauthorized'
+          ['error' => 'Unauthorized']
         , 401);
       }
     }
@@ -61,7 +61,7 @@ class ApiController extends Controller
       // Logout & Delete Access Key
       Auth::user()->AauthAcessToken()->delete();
       return response()->json(
-        'status' => true
+        ['status' => true]
       , 200);
     }
 
