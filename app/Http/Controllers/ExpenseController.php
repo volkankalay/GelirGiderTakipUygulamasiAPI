@@ -108,7 +108,6 @@ class ExpenseController extends Controller
     {
       // Update Data
       $request->validate([
-        'id'                => ['required', 'exists:data,id'],
         'transaction_date'  => ['date', 'required'],
         'amount'            => ['numeric', 'min:0', 'required'],
         'currency_id'       => ['integer', 'exists:currencies,id', 'required'],
@@ -116,7 +115,7 @@ class ExpenseController extends Controller
         'description'       => ['nullable', 'max:4096']
       ]);
 
-      $data             = Data::findOrFail($request->id);
+      $data             = Data::findOrFail($id);
 
       if($data->user_id == Auth::id()){
         $data->transaction_date   = $request->transaction_date;
