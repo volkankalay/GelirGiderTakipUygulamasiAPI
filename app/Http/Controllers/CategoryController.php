@@ -91,12 +91,11 @@ class CategoryController extends Controller
     {
       // Add New Category
       $request->validate([
-        'id'          => ['required', 'exists:categories,id'],
         'name'        => ['required', 'max:255'],
         'is_income'   => ['required', 'boolean'],
       ]);
 
-      $category             = Category::findOrFail($request->id);
+      $category             = Category::find($id);
 
       if($category->user_id == Auth::id()){
         $category->name       = $request->name;
