@@ -52,10 +52,10 @@ class ExpenseController extends Controller
         'description'       => ['nullable', 'max:4096']
       ]);
 
-      $category = Category::find($request->category_id)->first();
+      $category = Category::find($request->category_id);
       if(Auth::id() != $category->user_id ){
         return response()->json([
-         'status' => false
+          'status' => false,
        ], 401);
       }
 
